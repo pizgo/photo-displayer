@@ -1,16 +1,22 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef } from "react";
 
 const Photos = () => {
 
-    const [ photosUrl, setPhotosUrl ] = useState([]); //tutaj 3 stringi z urlami do fotek
+    const [ photosUrl, setPhotosUrl ] = useState([]);
 
-    let allSlugs = [];
+    let allSlugs = useRef([]);
+    let indexUrl = useRef(0);
 
     function createThreeImgs() {
-        const newUrl = allSlugs.slice(0,3).map(function(el) {
-           return 'http://source.unsplash.com/'+el
+        const newUrl = allSlugs.current.slice(indexUrl.current, indexUrl.current+3).map(function(el) {
+            return 'http://source.unsplash.com/'+el
         })
         setPhotosUrl(newUrl)
+    }
+
+    function handleNext() {
+        indexUrl.current+=3
+        createThreeImgs()
     }
 
     useEffect(() => {
@@ -27,13 +33,11 @@ const Photos = () => {
                 const slugArray = filteredUrl.map(function(el) {
                      return el.slice(28, el.length)
                  })
-                allSlugs = slugArray
+                allSlugs.current = slugArray
                 createThreeImgs()
             }
         )
-    }, [])
-
-
+    }, []);
 
     return (
         <>
@@ -42,7 +46,7 @@ const Photos = () => {
                 <img src={photosUrl[1]}/>
                 <img src={photosUrl[2]}/>
             </div>
-      
+            <button onClick={handleNext}>Next</button>
         </>
     )
 }
