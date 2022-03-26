@@ -6,6 +6,13 @@ const Photos = () => {
 
     let allSlugs = [];
 
+    function createThreeImgs() {
+        const newUrl = allSlugs.slice(0,3).map(function(el) {
+           return 'http://source.unsplash.com/'+el
+        })
+        setPhotosUrl(newUrl)
+    }
+
     useEffect(() => {
         fetch('https://picsum.photos/v2/list')
             .then( response => response.json() )
@@ -21,15 +28,21 @@ const Photos = () => {
                      return el.slice(28, el.length)
                  })
                 allSlugs = slugArray
+                createThreeImgs()
             }
         )
     }, [])
 
+
+
     return (
         <>
-        <div>
-            {photosUrl}
-        </div>
+            <div>
+                <img src={photosUrl[0]}/>
+                <img src={photosUrl[1]}/>
+                <img src={photosUrl[2]}/>
+            </div>
+      
         </>
     )
 }
