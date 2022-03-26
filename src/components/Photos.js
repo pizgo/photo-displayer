@@ -6,16 +6,22 @@ const Photos = () => {
 
     let allSlugs = useRef([]);
     let indexUrl = useRef(0);
+    const numberOfImg = 3;
 
     function createThreeImgs() {
-        const newUrl = allSlugs.current.slice(indexUrl.current, indexUrl.current+3).map(function(el) {
+        const newUrl = allSlugs.current.slice(indexUrl.current, indexUrl.current+ numberOfImg).map(function(el) {
             return 'http://source.unsplash.com/'+el
         })
         setPhotosUrl(newUrl)
     }
 
     function handleNext() {
-        indexUrl.current+=3
+        indexUrl.current+= numberOfImg
+        createThreeImgs()
+    }
+
+    function handlePrev() {
+        indexUrl.current-= numberOfImg
         createThreeImgs()
     }
 
@@ -46,7 +52,8 @@ const Photos = () => {
                 <img src={photosUrl[1]}/>
                 <img src={photosUrl[2]}/>
             </div>
-            <button onClick={handleNext}>Next</button>
+            {indexUrl.current > 0 && <button onClick={handlePrev}>Prev</button>}
+            {indexUrl.current <= allSlugs.current.length-numberOfImg && <button onClick={handleNext}>Next</button>}
         </>
     )
 }
