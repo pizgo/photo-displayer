@@ -48,9 +48,10 @@ const Photos = () => {
     return (
         <>
             <div>
-                <img src={photosUrl[0]}/>
-                <img src={photosUrl[1]}/>
-                <img src={photosUrl[2]}/>
+                {photosUrl.map((el, key) =>
+                <li key={key}>
+                    <img src={el}/>
+                </li>)}
             </div>
             {indexUrl.current > 0 && <button onClick={handlePrev}>Prev</button>}
             {indexUrl.current <= allSlugs.current.length - numberOfImg && <button onClick={handleNext}>Next</button>}
