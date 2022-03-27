@@ -1,28 +1,25 @@
-import React, {useState, useEffect, useRef } from "react";
+import React, {useEffect} from 'react';
+import { useSelector, useDispatch} from 'react-redux'
+import { imgActions} from "../ReduxStore/redux";
 
 const Photos = () => {
 
-    const [photosUrl, setPhotosUrl] = useState([]);
+    const dispatch = useDispatch();
+    const allSlugs = useSelector(state => state.allSlugs)
+    const indexUrl = useSelector(state => state.indexUrl)
+    const allPhotosUrls = useSelector(state => state.allPhotosUrls)
+    const displayedNumberOfImg = useSelector(state => state.displayedNumberOfImg)
 
-    let allSlugs = useRef([]);
-    let indexUrl = useRef(0);
-    const numberOfImg = 3;
-
-    function createThreeImgs() {
-        const newUrl = allSlugs.current.slice(indexUrl.current, indexUrl.current + numberOfImg).map(function (el) {
-            return 'http://source.unsplash.com/' + el
-        })
-        setPhotosUrl(newUrl)
+    function handleNewSlugsData(slugArray) {
+        dispatch(imgActions.storeFetchedSlugs(slugArray))
     }
 
     function handleNext() {
-        indexUrl.current += numberOfImg
-        createThreeImgs()
+        dispatch(imgActions.incrementIndexUrl());
     }
 
     function handlePrev() {
-        indexUrl.current -= numberOfImg
-        createThreeImgs()
+        dispatch(imgActions.decrementIndexUrl());
     }
 
     useEffect(() => {
@@ -39,8 +36,7 @@ const Photos = () => {
                     const slugArray = filteredUrl.map(function (el) {
                         return el.slice(28, el.length)
                     })
-                    allSlugs.current = slugArray
-                    createThreeImgs()
+                    handleNewSlugsData(slugArray)
                 }
             )
     }, []);
@@ -48,13 +44,12 @@ const Photos = () => {
     return (
         <>
             <div>
-                {photosUrl.map((el, key) =>
-                <li key={key}>
-                    <img src={el}/>
-                </li>)}
+                {allPhotosUrls.map((el, key) =>
+
+                    <img key={key} src={el}/>)}
             </div>
-            {indexUrl.current > 0 && <button onClick={handlePrev}>Prev</button>}
-            {indexUrl.current <= allSlugs.current.length - numberOfImg && <button onClick={handleNext}>Next</button>}
+            {indexUrl > 0 && <button onClick={handlePrev}>Prev</button>}
+            {indexUrl <= allSlugs.length - displayedNumberOfImg && <button onClick={handleNext}>Next</button>}
         </>
     )
 }
