@@ -18,7 +18,6 @@ const Buttons = () => {
         dispatch(imgActions.decrementIndexUrl());
     }
     return (
-        <>
             <div className='button_container'>
                 <Button className='btn btn-success'
                         style={{ visibility: (indexUrl > 0) ? 'visible' : 'hidden'}}
@@ -27,7 +26,6 @@ const Buttons = () => {
                         style={{ visibility: (indexUrl <= allSlugs.length - displayedNumberOfImg) ? 'visible' : 'hidden'}}
                         onClick={handleNext}>Next</Button>
             </div>
-        </>
     );
 };
 

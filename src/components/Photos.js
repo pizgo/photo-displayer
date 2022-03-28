@@ -33,7 +33,6 @@ const Photos = () => {
     }, []);
 
     return (
-        <>
             <Row>
                 {allPhotosUrls.map((el, key) =>
                     <Col className='col-md-4'>
@@ -42,7 +41,6 @@ const Photos = () => {
                         </Card>
                     </Col>)}
             </Row>
-        </>
     );
 }
 
