@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch} from 'react-redux'
 import { imgActions} from "../ReduxStore/redux";
-
+import {Button} from "react-bootstrap";
 
 const Buttons = () => {
 
@@ -20,8 +20,8 @@ const Buttons = () => {
     return (
         <>
             <div>
-                {indexUrl > 0 && <button onClick={handlePrev}>Prev</button>}
-                {indexUrl <= allSlugs.length - displayedNumberOfImg && <button onClick={handleNext}>Next</button>}
+                {indexUrl > 0 && <Button onClick={handlePrev}>Prev</Button>}
+                {indexUrl <= allSlugs.length - displayedNumberOfImg && <Button onClick={handleNext}>Next</Button>}
             </div>
         </>
     );

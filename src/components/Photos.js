@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { useSelector, useDispatch} from 'react-redux'
 import { imgActions} from "../ReduxStore/redux";
-import Buttons from "./Buttons";
+import {Card, Row, Col} from "react-bootstrap";
 
 const Photos = () => {
 
@@ -33,12 +33,20 @@ const Photos = () => {
 
     return (
         <>
-            <div>
+            <Row>
                 {allPhotosUrls.map((el, key) =>
-                    <img key={key} src={el} alt={'img'}/>)}
-            </div>
+                    <Col className='col-md-4'>
+                        <Card>
+                            <Card.Img className='img-responsive img-thumbnail' key={key} src={el} alt={el}/>
+                        </Card>
+                    </Col>)}
+            </Row>
+            {/*<div>*/}
+            {/*    {allPhotosUrls.map((el, key) =>*/}
+            {/*        <Card.Img key={key} src={el} alt={'img'}/>)}*/}
+            {/*</div>*/}
         </>
     );
-};
+}
 
 export default Photos;
