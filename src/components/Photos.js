@@ -29,7 +29,7 @@ const Photos = () => {
                     })
                     handleNewSlugsData(slugArray);
                 }
-            );
+            )
     }, []);
 
     return (
