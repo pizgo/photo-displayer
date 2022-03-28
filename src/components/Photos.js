@@ -1,26 +1,16 @@
 import React, {useEffect} from 'react';
 import { useSelector, useDispatch} from 'react-redux'
 import { imgActions} from "../ReduxStore/redux";
+import Buttons from "./Buttons";
 
 const Photos = () => {
 
     const dispatch = useDispatch();
-    const allSlugs = useSelector(state => state.allSlugs)
-    const indexUrl = useSelector(state => state.indexUrl)
-    const allPhotosUrls = useSelector(state => state.allPhotosUrls)
-    const displayedNumberOfImg = useSelector(state => state.displayedNumberOfImg)
+    const allPhotosUrls = useSelector(state => state.allPhotosUrls);
 
     function handleNewSlugsData(slugArray) {
         dispatch(imgActions.storeFetchedSlugs(slugArray))
-    }
-
-    function handleNext() {
-        dispatch(imgActions.incrementIndexUrl());
-    }
-
-    function handlePrev() {
-        dispatch(imgActions.decrementIndexUrl());
-    }
+    };
 
     useEffect(() => {
         fetch('https://picsum.photos/v2/list')
@@ -36,22 +26,20 @@ const Photos = () => {
                     const slugArray = filteredUrl.map(function (el) {
                         return el.slice(28, el.length)
                     })
-                    handleNewSlugsData(slugArray)
+                    handleNewSlugsData(slugArray);
                 }
-            )
+            );
     }, []);
 
     return (
         <>
             <div>
                 {allPhotosUrls.map((el, key) =>
-
-                    <img key={key} src={el}/>)}
+                    <img key={key} src={el} alt={'img'}/>)}
             </div>
-            {indexUrl > 0 && <button onClick={handlePrev}>Prev</button>}
-            {indexUrl <= allSlugs.length - displayedNumberOfImg && <button onClick={handleNext}>Next</button>}
+            <Buttons />
         </>
-    )
-}
+    );
+};
 
 export default Photos;

@@ -1,8 +1,30 @@
+import React from "react";
+import { useSelector, useDispatch} from 'react-redux'
+import { imgActions} from "../ReduxStore/redux";
+
+
 const Buttons = () => {
 
-    return (
-        <></>
-    )
-}
+    const dispatch = useDispatch();
+    const indexUrl = useSelector(state => state.indexUrl);
+    const allSlugs = useSelector(state => state.allSlugs);
+    const displayedNumberOfImg = useSelector(state => state.displayedNumberOfImg);
 
-export default Buttons
+    function handleNext() {
+        dispatch(imgActions.incrementIndexUrl());
+    };
+
+    function handlePrev() {
+        dispatch(imgActions.decrementIndexUrl());
+    };
+    return (
+        <>
+            <div>
+                {indexUrl > 0 && <button onClick={handlePrev}>Prev 1</button>}
+                {indexUrl <= allSlugs.length - displayedNumberOfImg && <button onClick={handleNext}>Next 1</button>}
+            </div>
+        </>
+    );
+};
+
+export default Buttons;
