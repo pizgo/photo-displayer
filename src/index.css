@@ -18,8 +18,12 @@ code {
 
 .button_container {
   margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
 }
+
 .btn {
   margin-right: 20px;
   padding: 5px 20px;
+
 }

@@ -7,10 +7,11 @@ const Photos = () => {
 
     const dispatch = useDispatch();
     const allPhotosUrls = useSelector(state => state.allPhotosUrls);
+    const urlPrefixLength = 28;
 
     function handleNewSlugsData(slugArray) {
         dispatch(imgActions.storeFetchedSlugs(slugArray))
-    };
+    }
 
     useEffect(() => {
         fetch('https://picsum.photos/v2/list')
@@ -24,7 +25,7 @@ const Photos = () => {
                         return el.match(regex)
                     })
                     const slugArray = filteredUrl.map(function (el) {
-                        return el.slice(28, el.length)
+                        return el.slice(urlPrefixLength, el.length)
                     })
                     handleNewSlugsData(slugArray);
                 }

@@ -12,18 +12,20 @@ const Buttons = () => {
 
     function handleNext() {
         dispatch(imgActions.incrementIndexUrl());
-    };
+    }
 
     function handlePrev() {
         dispatch(imgActions.decrementIndexUrl());
-    };
+    }
     return (
         <>
             <div className='button_container'>
-                {indexUrl > 0 &&
-                    <Button className='btn btn-success' onClick={handlePrev}>Prev</Button>}
-                {indexUrl <= allSlugs.length - displayedNumberOfImg &&
-                    <Button className='btn btn-success' onClick={handleNext}>Next</Button>}
+                <Button className='btn btn-success'
+                        style={{ visibility: (indexUrl > 0) ? 'visible' : 'hidden'}}
+                        onClick={handlePrev}>Prev</Button>
+                <Button className='btn btn-success'
+                        style={{ visibility: (indexUrl <= allSlugs.length - displayedNumberOfImg) ? 'visible' : 'hidden'}}
+                        onClick={handleNext}>Next</Button>
             </div>
         </>
     );
