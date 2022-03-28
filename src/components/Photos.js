@@ -41,10 +41,6 @@ const Photos = () => {
                         </Card>
                     </Col>)}
             </Row>
-            {/*<div>*/}
-            {/*    {allPhotosUrls.map((el, key) =>*/}
-            {/*        <Card.Img key={key} src={el} alt={'img'}/>)}*/}
-            {/*</div>*/}
         </>
     );
 }

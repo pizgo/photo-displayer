@@ -4,11 +4,12 @@ import Buttons from "./components/Buttons";
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
+
 function App() {
   return (
     <div className='container'>
+        <Buttons/>
        <Photos/>
-       <Buttons/>
     </div>
   );
 }

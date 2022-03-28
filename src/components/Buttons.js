@@ -19,9 +19,11 @@ const Buttons = () => {
     };
     return (
         <>
-            <div>
-                {indexUrl > 0 && <Button onClick={handlePrev}>Prev</Button>}
-                {indexUrl <= allSlugs.length - displayedNumberOfImg && <Button onClick={handleNext}>Next</Button>}
+            <div className='button_container'>
+                {indexUrl > 0 &&
+                    <Button className='btn btn-success' onClick={handlePrev}>Prev</Button>}
+                {indexUrl <= allSlugs.length - displayedNumberOfImg &&
+                    <Button className='btn btn-success' onClick={handleNext}>Next</Button>}
             </div>
         </>
     );
