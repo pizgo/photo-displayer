@@ -37,7 +37,6 @@ const Photos = () => {
                 {allPhotosUrls.map((el, key) =>
                     <img key={key} src={el} alt={'img'}/>)}
             </div>
-            <Buttons />
         </>
     );
 };

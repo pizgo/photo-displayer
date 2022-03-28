@@ -20,8 +20,8 @@ const Buttons = () => {
     return (
         <>
             <div>
-                {indexUrl > 0 && <button onClick={handlePrev}>Prev 1</button>}
-                {indexUrl <= allSlugs.length - displayedNumberOfImg && <button onClick={handleNext}>Next 1</button>}
+                {indexUrl > 0 && <button onClick={handlePrev}>Prev</button>}
+                {indexUrl <= allSlugs.length - displayedNumberOfImg && <button onClick={handleNext}>Next</button>}
             </div>
         </>
     );
