@@ -1,4 +1,4 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { createStore} from 'redux';
 
 const initialState = { allSlugs: [], indexUrl: 0, allPhotosUrls: [], displayedNumberOfImg: 3}
@@ -6,7 +6,6 @@ const initialState = { allSlugs: [], indexUrl: 0, allPhotosUrls: [], displayedNu
 const generatePhotosUrls = (state) => {
     return state.allSlugs.slice(state.indexUrl, state.indexUrl + state.displayedNumberOfImg).map(function (el) {
         return 'http://source.unsplash.com/' + el
-
     });
 }
 

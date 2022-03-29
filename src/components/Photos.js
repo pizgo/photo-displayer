@@ -1,36 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch} from 'react-redux'
-import { imgActions } from "../ReduxStore/redux";
 import { Card, Row, Col } from "react-bootstrap";
 
 const Photos = () => {
 
-    const dispatch = useDispatch();
     const allPhotosUrls = useSelector(state => state.allPhotosUrls);
-    const urlPrefixLength = 28;
-
-    function handleNewSlugsData(slugArray) {
-        dispatch(imgActions.storeFetchedSlugs(slugArray))
-    }
-
-    useEffect(() => {
-        fetch('https://picsum.photos/v2/list')
-            .then(response => response.json())
-            .then(response => {
-                    const urlArray = response.map(function (el) {
-                        return (el.url);
-                    });
-                    const regex = /^https:\/\/unsplash\.com\/photos\//;
-                    const filteredUrl = urlArray.filter(function (el) {
-                        return el.match(regex)
-                    })
-                    const slugArray = filteredUrl.map(function (el) {
-                        return el.slice(urlPrefixLength, el.length)
-                    })
-                    handleNewSlugsData(slugArray);
-                }
-            )
-    }, []);
 
     return (
             <Row>
