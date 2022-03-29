@@ -31,7 +31,7 @@ describe ("photoDisplayUITests", () => {
         websiteIsOpened()
 
         //when
-        clickedNextBtn()
+        clickedPrevBtn()
 
         //then
         displaysThreeNewImages()
@@ -45,8 +45,16 @@ describe ("photoDisplayUITests", () => {
         noPrevBtn()
     })
 
-    it ("while there is no more pictures to generate, only Prev button is visible",
+    it ("while there is no more pictures to generate, only Prev button is visible", () => {
+        //given
+        websiteIsOpened()
 
+        //when
+        NextClickedTimes(9)
+
+        //then
+        noNextBtn()
+    })
 })
 
 function websiteIsOpened() {
@@ -60,4 +68,30 @@ function displaysThreeImages(){
         .and((img) => {
             expect(img[0].naturalWidth).to.be.greaterThan(0)
         })
+}
+
+function clickedNextBtn() {
+    cy.contains("Next").click();
+}
+
+function clickedPrevBtn() {
+    cy.contains("Prev").click();
+}
+
+function displaysThreeNewImages(){
+
+}
+
+function noPrevBtn() {
+    cy.get('.btn-prev').should('not.to.be.visible')
+}
+
+function NextClickedTimes(times) {
+    for(let i=0; i < times; i++) {
+        cy.contains("Next").click();
+    }
+}
+
+function noNextBtn() {
+    cy.get('.btn-next').should('not.to.be.visible')
 }
