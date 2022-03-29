@@ -8,4 +8,6 @@ Created using:
 - Bootstrap
 - Cypress integration tests
 
+Planned improvements: adding a loader
+
 Project is hosted on Github Pages - [pizgo.github.io/photo-displayer](http://pizgo.github.io/photo-displayer)
