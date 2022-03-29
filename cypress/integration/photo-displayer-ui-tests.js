@@ -7,23 +7,16 @@ describe ("photoDisplayUITests", () => {
         displaysThreeImages()
     })
 
-    it ("after clicking on Next button, three new pictures are generated", () => {
+    it ("after clicking on Next button, the url of a first pic is different ", () => {
         //given
         websiteIsOpened()
 
-        //when
-        //zapisuje do tablicy urle starych img
-        let srcGetter = cy.get('.img-responsive').invoke('attr', 'src')
-            .then((el) => {
-                debugger
-            });
-        cy.log(srcGetter)
-        clickedNextBtn()
+        //when and then
+        let firstPicUrl = getFirstPicSrc()
+        clickNextButton(1)
 
         //then
-        // displaysThreeNewImages()
-        //zapisuje do nowej tablicy urle nowych img
-        //porównuję dwie tablice i oczekuje, ze url będą różne
+        expectFirstPicSrcNotToEqual(firstPicUrl)
     })
 
     it ("after clicking on Prev button, three previous pictures are generated", () => {
@@ -31,10 +24,12 @@ describe ("photoDisplayUITests", () => {
         websiteIsOpened()
 
         //when
+        clickNextButton(1)
+        let firstPicUrl = getFirstPicSrc()
         clickedPrevBtn()
 
         //then
-        displaysThreeNewImages()
+        expectFirstPicSrcNotToEqual(firstPicUrl)
     })
 
     it ("while page is loaded for the first time, only Next button is visible", () => {
@@ -50,12 +45,30 @@ describe ("photoDisplayUITests", () => {
         websiteIsOpened()
 
         //when
-        NextClickedTimes(9)
+        clickNextButton(9)
 
         //then
         noNextBtn()
     })
 })
+
+function getFirstPicSrc(){
+    let firstPicUrl = ""
+    cy.get('.img-responsive')
+        .invoke('attr', 'src')
+        .then((firstsrc) => {
+            firstPicUrl = firstsrc
+        })
+    return firstPicUrl
+}
+
+function expectFirstPicSrcNotToEqual(firstPicUrl) {
+    cy.get('.img-responsive')
+        .invoke('attr', 'src')
+        .then((secondSrc) => {
+            expect(secondSrc).to.not.equal(firstPicUrl)
+        })
+}
 
 function websiteIsOpened() {
     cy.visit("http://localhost:3000");
@@ -70,23 +83,27 @@ function displaysThreeImages(){
         })
 }
 
-function clickedNextBtn() {
-    cy.contains("Next").click();
+function getUrlsOfPicturesVisible() {
+    const pictureUrls = []
+    cy.get('.img-responsive')
+        .then(($img) => {
+            for (let i = 0; i < $img.length; i++){
+                cy.log($img[i])
+                pictureUrls.push($img[i].src)
+            }
+    })
+    return pictureUrls
 }
 
 function clickedPrevBtn() {
     cy.contains("Prev").click();
 }
 
-function displaysThreeNewImages(){
-
-}
-
 function noPrevBtn() {
     cy.get('.btn-prev').should('not.to.be.visible')
 }
 
-function NextClickedTimes(times) {
+function clickNextButton(times) {
     for(let i=0; i < times; i++) {
         cy.contains("Next").click();
     }

@@ -35,9 +35,9 @@ const Photos = () => {
     return (
             <Row>
                 {allPhotosUrls.map((el, index) =>
-                    <Col className='col-md-4'>
-                        <Card>
-                            <Card.Img className='img-responsive img-thumbnail' key={index} src={el} alt={el}/>
+                    <Col key={index} className='col-md-4'>
+                        <Card className='card'>
+                            <Card.Img className='img-responsive img-thumbnail'  src={el} alt={el}/>
                         </Card>
                     </Col>)}
             </Row>
