@@ -1,10 +1,10 @@
 # Photo displayer app.
 
-A simple app requested during one interview. It downloads the list of photos' urls from an external API, extracts their IDs, displayes them into the 3-columns row.
+A simple app requested during job interview. It downloads the list of photos' urls from an external API, extracts their IDs, displayes them into the 3-columns rows.
 
 Created using:
 - React.js
-- Redux
+- React Redux
 - Bootstrap
 - Cypress integration tests
 
