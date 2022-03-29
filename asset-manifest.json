@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/photo-displayer/static/css/main.4e3f1025.css",
+    "main.js": "/photo-displayer/static/js/main.831db21b.js",
+    "index.html": "/photo-displayer/index.html",
+    "main.4e3f1025.css.map": "/photo-displayer/static/css/main.4e3f1025.css.map",
+    "main.831db21b.js.map": "/photo-displayer/static/js/main.831db21b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4e3f1025.css",
+    "static/js/main.831db21b.js"
+  ]
+}
