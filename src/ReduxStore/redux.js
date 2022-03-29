@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createStore} from 'redux';
+import { createStore, applyMiddleware} from 'redux';
+import thunk from "redux-thunk"
 
 const initialState = { allSlugs: [], indexUrl: 0, allPhotosUrls: [], displayedNumberOfImg: 3}
 
@@ -28,7 +29,6 @@ const displayingImgSlice = createSlice({
     }
 })
 
-const store = createStore(displayingImgSlice.reducer)
-
+const store = createStore(displayingImgSlice.reducer, applyMiddleware(thunk))
 export const imgActions = displayingImgSlice.actions;
 export default store;
