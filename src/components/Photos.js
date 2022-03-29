@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch} from 'react-redux'
-import { imgActions} from "../ReduxStore/redux";
-import {Card, Row, Col} from "react-bootstrap";
+import { imgActions } from "../ReduxStore/redux";
+import { Card, Row, Col } from "react-bootstrap";
 
 const Photos = () => {
 
@@ -34,10 +34,10 @@ const Photos = () => {
 
     return (
             <Row>
-                {allPhotosUrls.map((el, key) =>
+                {allPhotosUrls.map((el, index) =>
                     <Col className='col-md-4'>
                         <Card>
-                            <Card.Img className='img-responsive img-thumbnail' key={key} src={el} alt={el}/>
+                            <Card.Img className='img-responsive img-thumbnail' key={index} src={el} alt={el}/>
                         </Card>
                     </Col>)}
             </Row>

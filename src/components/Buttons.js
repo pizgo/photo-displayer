@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch} from 'react-redux'
-import { imgActions} from "../ReduxStore/redux";
-import {Button} from "react-bootstrap";
+import { imgActions } from "../ReduxStore/redux";
+import { Button } from "react-bootstrap";
 
 const Buttons = () => {
 
@@ -19,10 +19,10 @@ const Buttons = () => {
     }
     return (
             <div className='button_container'>
-                <Button className='btn btn-success'
+                <Button className='btn btn-success btn-prev'
                         style={{ visibility: (indexUrl > 0) ? 'visible' : 'hidden'}}
                         onClick={handlePrev}>Prev</Button>
-                <Button className='btn btn-success'
+                <Button className='btn btn-success btn-next'
                         style={{ visibility: (indexUrl <= allSlugs.length - displayedNumberOfImg) ? 'visible' : 'hidden'}}
                         onClick={handleNext}>Next</Button>
             </div>

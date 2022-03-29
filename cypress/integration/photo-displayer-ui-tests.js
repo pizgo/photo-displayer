@@ -1,12 +1,13 @@
-describe ("photo-displayer-ui-tests", () => {
-    it ("properly displayes three images", () => {
+describe ("photoDisplayUITests", () => {
+    it ("properly displays three images when page is loaded for the first time", () => {
         //given
         websiteIsOpened()
 
-        //when
-
         //then
+        displaysThreeImages()
     })
+
+
 })
 
 function websiteIsOpened() {
@@ -14,5 +15,10 @@ function websiteIsOpened() {
 }
 
 function displaysThreeImages(){
-    cy.get(".temperature")
+    cy.get(".img-responsive")
+        .should('have.length', 3)
+        .should('be.visible')
+        .and((img) => {
+            expect(img[0].naturalWidth).to.be.greaterThan(0)
+        })
 }
