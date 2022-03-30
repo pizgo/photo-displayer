@@ -52,6 +52,20 @@ describe ("photoDisplayUITests", () => {
     })
 })
 
+
+function websiteIsOpened() {
+    cy.visit("http://localhost:3000");
+}
+
+function displaysThreeImages(){
+    cy.get(".img-responsive")
+        .should('have.length', 3)
+        .should('be.visible')
+        .and((img) => {
+            expect(img[0].naturalWidth).to.be.greaterThan(0)
+        })
+}
+
 function getFirstPicSrc(){
     let firstPicUrl = ""
     cy.get('.img-responsive')
@@ -68,31 +82,6 @@ function expectFirstPicSrcNotToEqual(firstPicUrl) {
         .then((secondSrc) => {
             expect(secondSrc).to.not.equal(firstPicUrl)
         })
-}
-
-function websiteIsOpened() {
-    cy.visit("http://localhost:3000");
-}
-
-function displaysThreeImages(){
-    cy.get(".img-responsive")
-        .should('have.length', 3)
-        .should('be.visible')
-        .and((img) => {
-            expect(img[0].naturalWidth).to.be.greaterThan(0)
-        })
-}
-
-function getUrlsOfPicturesVisible() {
-    const pictureUrls = []
-    cy.get('.img-responsive')
-        .then(($img) => {
-            for (let i = 0; i < $img.length; i++){
-                cy.log($img[i])
-                pictureUrls.push($img[i].src)
-            }
-    })
-    return pictureUrls
 }
 
 function clickedPrevBtn() {
