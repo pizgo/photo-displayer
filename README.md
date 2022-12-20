@@ -1,10 +1,10 @@
 # Photo displayer app.
 
-A simple app requested during job interview. It downloads the list of photos' urls from an external API, extracts their IDs, displayes them into the 3-columns rows.
+The purpose of this project was to learn how to use Redux and practice the usage of cypress. The app downloads the list of photos' urls from an external API, extracts their ID and displayes them into the 3-columns rows. All states are managed by React Redux.
 
 Created using:
 - React.js
-- React Redux
+- React Redux Toolkit
 - Bootstrap
 - Cypress integration tests
 
